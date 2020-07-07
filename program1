@@ -1,3 +1,5 @@
+#This program is to calculates the inverse of a matrix and stores it as cache.
+#This function is used to create the cahche of matrix.
 makeCacheMatix <-function(x = matrix())
 {
   i<- NULL
@@ -6,6 +8,7 @@ makeCacheMatix <-function(x = matrix())
     x <<-y
     i <<-NULL
   }
+  #The function retrieves the vale of x
   get <-function()
   {
     x
@@ -23,17 +26,20 @@ makeCacheMatix <-function(x = matrix())
   setinverse = setinverse,
   getinverse = getinverse)
 }
- 
-cachesolve <-function(x, ...)
+ #This function looks for stored caches, and returns the value and if it is not there it finds out the inverse before cacheing it.
+cacheSolve <-function(x, ...)
 {
   i <-x$getinverse()
+  #if inverse is there, prints out the cached value
   if(!is.null(i))
   {
     message("getting cached data")
     return(i)
   }
+  #if inverse of matrix isn't cached already, it find outs the inverse and cache it.
   data <-x$get()
   i <-solve(data, ...)
   x$Setinverse(i)
   i
+   # Return a matrix that is the inverse of 'x'
 }
